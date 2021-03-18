@@ -1,3 +1,0 @@
-<launch>
-	<node pkg="pipeless_plant_master" type = "test.py" name = "test" output="screen" />
-</launch>
