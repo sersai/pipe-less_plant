@@ -1,0 +1,42 @@
+#passwords
+# router: iRobot/nopipes123
+# RPi3: 192.168.0. /ubuntu
+
+##adding new msg
+#CMakeLists.txt
+find_package(catkin REQUIRED COMPONENTS
+	rospy
+	std_msgs
+	message_generation # (1) add this line
+)
+add_message_files(
+ FILES # (2) uncomment this line
+ rfid_data.msg # (3) add the .msg file which must be under msg folder
+generate_messages( # (4) uncomment whole of generate_messages
+ DEPENDENCIES
+ std_msgs
+)
+catkin_package( # (5) uncomment whole of catkin_package and add (6)
+ INCLUDE_DIRS
+ LIBRARIES "package name"
+ CATKIN_DEPENDS rospy std_msgs
+ DEPENDS system_lib
+ CATKIN_DEPENDS message_runtime # (6) add this line
+)
+
+
+#scans the router for devices 
+$nmap -sP 192.168.0.0/24 
+#ssh (password: ubuntu)
+$ ssh ubuntu@192.168.0.134
+$ ssh ubuntu@192.168.0.106
+
+#run either setup.sh which will start roscore, and rosrun test.py file
+$ bash setup.sh
+
+#or run master.launch which will start roscore and run test.py file
+$ roslaunch pipeless_plant_master master.launch
+
+#important part is both options will initiate rosmaster & run main python code
+
+#prefilter_node.py reads rfid info from arduino through usb port, shares the rfid_data.msg 
