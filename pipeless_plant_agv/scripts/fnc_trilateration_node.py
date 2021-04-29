@@ -12,6 +12,7 @@ Created on Mon Jan 28 17:57:21 2019
 import json
 import os
 import math
+import rospy
 #
 ##
 #
@@ -225,7 +226,7 @@ def pre_fil_four(dist_be_tags,rssi,RSSIDIS,tag_all_ex):
         return combi, tags_final
     except Exception as e:
         print "error in pre_fil_four function on fnc_trilateration_node.py"
-        print e
+	print e
 #
 ## function: bilateration_two
 #
@@ -424,8 +425,7 @@ def esti_pos(data,position_old,dist_be_tags,delta):
                 RSSIDIS = json.load(jason_file2)
         else:
             print("No txt-file for RSSI to Distance")
-        print "################"
-        print data.number
+        #print data.number
         #-------------------------------------------------------------------------
         # Main computation
         if data.number == 1:
@@ -550,3 +550,4 @@ def esti_pos(data,position_old,dist_be_tags,delta):
         return position_pub
     except:
         print "error in esti_pos function on fnc_trilateration_node.py"
+	print data

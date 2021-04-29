@@ -23,17 +23,24 @@ def main():
 	if ser.inWaiting() > 0:
 		ser.reset_input_buffer()
 	while not rospy.is_shutdown():
-#		collect = empty_list[:]
+		testStr = ""
 		if ser.inWaiting() > 0:
 			collect = empty_list[:]
 			while ser.inWaiting() > 0:
 				response = ser.read()
-				collect[count] = response
+				if (response != '\r') and (response != '\n') and (response != '\x00'):
+					try:
+						collect[count] = response
+					except:
+						print"count:{}".format(count)
 				count += 1
-				print response
-			count = 0
-#			print collect
+#			count = 0
+			collect[:] = [x for x in collect if x]
+			for i in collect:
+				testStr +=i
+			print testStr
 			print '####'
+		count = 0
 		rate.sleep()
 if __name__ == '__main__':
 	rospy.init_node("test")

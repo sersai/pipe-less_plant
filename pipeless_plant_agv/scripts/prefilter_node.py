@@ -123,10 +123,9 @@ def main():
 			rfid_str.rssi3 = 0
 			rfid_str.rssi4 = 0
 			rfid_str.rssi5 = 0
-		print rfid_str
-		print "###"
 		gl_count = 0
 		# Publishing
+		print rfid_str
 		rfid_str.header.stamp = rospy.Time.now()
 		pub.publish(rfid_str)
 		rate.sleep()
