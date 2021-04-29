@@ -8,6 +8,5 @@
 #start over
 gnome-terminal -- roscore
 
-rosrun pipeless_plant_master test.py
-#python ~/catkin_ws/src/pipeless_plant_master/src/test.py
-#roslaunch pipeless_plant_master master.launch
+#rosrun pipeless_plant_master test.py
+roslaunch pipeless_plant_master master.launch

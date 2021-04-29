@@ -12,6 +12,7 @@ Created on Mon Jan 28 17:57:21 2019
 import json
 import os
 import math
+import rospy
 #
 ##
 #
@@ -404,7 +405,7 @@ def esti_pos(data,position_old,dist_be_tags,delta):
         position_pub = position()
 
         script_dir = os.path.dirname(__file__)
-        rel_path1 = "IDPOS2.txt"
+        rel_path1 = "IDPOS_small.txt"
         rel_path2 = "RSSIDISTANCE.txt"
         abs_file_path1 = os.path.join(script_dir, rel_path1)
         abs_file_path2 = os.path.join(script_dir, rel_path2)
@@ -424,8 +425,7 @@ def esti_pos(data,position_old,dist_be_tags,delta):
                 RSSIDIS = json.load(jason_file2)
         else:
             print("No txt-file for RSSI to Distance")
-        print "################"
-        print data.number
+        #print data.number
         #-------------------------------------------------------------------------
         # Main computation
         if data.number == 1:
@@ -550,3 +550,4 @@ def esti_pos(data,position_old,dist_be_tags,delta):
         return position_pub
     except:
         print "error in esti_pos function on fnc_trilateration_node.py"
+
