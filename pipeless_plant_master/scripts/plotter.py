@@ -18,7 +18,7 @@ def main():
     rate = rospy.Rate(4) # 4hz    
     ###### Plot Setup
     script_dir = os.path.dirname(__file__)
-    rel_path1 = "IDPOS2.txt"
+    rel_path1 = "IDPOS_small.txt"
     abs_file_path1 = os.path.join(script_dir, rel_path1)   
     # Load TagID - Pos List
     if os.path.isfile(abs_file_path1) == True:
