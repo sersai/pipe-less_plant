@@ -7,6 +7,7 @@ import time
 
 from std_msgs.msg import String
 from std_msgs.msg import UInt8
+<<<<<<< HEAD
 from pipeless_plant_agv.msg import rfid_data
 # Global variables
 #
@@ -15,6 +16,19 @@ def main():
 	rospy.init_node('prefilter') #initialize ros node with the name 'prefilter'
 	pub = rospy.Publisher('rfid_reader_agv1', rfid_data, queue_size=10) #setup a new ros topic called 'rfid_reader_agv1' with ros msg rfid_data
 	rate = rospy.Rate(4) #4hz
+=======
+#from prefilter.msg import rfid_data
+from pipeless_plant_agv.msg import rfid_data
+# Global variables
+
+
+
+def main():
+    # Configuration of the ros node stuff
+	rospy.init_node('prefilter')
+	pub = rospy.Publisher('rfid_reader_agv1', rfid_data, queue_size=10)
+	rate = rospy.Rate(4) # 4hz
+>>>>>>> 814fba57997c70dbff97d814a7415c7b7aadfc35
 	rate.sleep()
 	gl_count = 0
 	response = ' '
@@ -47,6 +61,7 @@ def main():
 		rfid_str.rssi3 = 0
 		rfid_str.rssi4 = 0
 		rfid_str.rssi5 = 0
+<<<<<<< HEAD
 		# Recording RFID data, incoming data will look like:
 		#+TAGS=0OK #no tag(s) read
 		#+TAGS=1+UID=E00401503A5BD993,+RSSI+4/4OK # 1 tag read
@@ -125,6 +140,72 @@ def main():
 			rfid_str.rssi5 = 0
 		print rfid_str
 		print "###"
+=======
+		# Recording RFID data
+		if ser.inWaiting() > 0:
+			while ser.inWaiting() > 0:
+				response  =  ser.read()
+				# detecting the number of tags
+				if response == 'T':
+					gl_count = 0
+					msg_ts1 = " "
+					for i in range(0,num_ts1):
+						str_ts1 = ser.read()
+#						print str_ts1
+						msg_ts1 += str_ts1
+					#print(msg_ts1)
+					if msg_ts1 == " AGS=":
+						pu_number = ser.read()
+						#print("----TAG---------")
+					rfid_str.number = int(pu_number)
+
+				# detecting the ID
+				elif response == 'U':
+					gl_count += 1
+					msg_ts2 = " "
+					for i in range(0,num_ts2):
+						str_ts2 = ser.read()
+						msg_ts2 += str_ts2
+					#print(msg_ts2)
+					if msg_ts2 == " ID=":
+						trash = ser.read(num_ts2*4)
+						pu_ID = ser.read(num_ID)
+						#print("--------ID----------")
+					#Writing the IDs
+					if gl_count == 1:
+						rfid_str.id1 = pu_ID
+					elif gl_count == 2:
+						rfid_str.id2 = pu_ID
+					elif gl_count == 3:
+						rfid_str.id3 = pu_ID
+					elif gl_count == 4:
+						rfid_str.id4 = pu_ID
+					elif gl_count == 5:
+						rfid_str.id5 = pu_ID
+					#print(gl_count)
+				# detecting RSSI
+				elif response == 'R':
+					msg_ts3 = " "
+					for i in range(0,num_ts3):
+						str_ts3 = ser.read()
+						msg_ts3 += str_ts3
+					#print(msg_ts3)
+					if msg_ts3 == " SSI=":
+						trash = ser.read(num_ts4)
+						pu_RSSI = ser.read()
+						#print("------------RSSI----")
+					#Writing the RSSI
+					if gl_count == 1:
+						rfid_str.rssi1 = int(pu_RSSI)
+					elif gl_count == 2:
+						rfid_str.rssi2 = int(pu_RSSI)
+					elif gl_count == 3:
+						rfid_str.rssi3 = int(pu_RSSI)
+					elif gl_count == 4:
+						rfid_str.rssi4 = int(pu_RSSI)
+					elif gl_count == 5:
+						rfid_str.rssi5 = int(pu_RSSI)
+>>>>>>> 814fba57997c70dbff97d814a7415c7b7aadfc35
 		gl_count = 0
 		# Publishing
 		rfid_str.header.stamp = rospy.Time.now()

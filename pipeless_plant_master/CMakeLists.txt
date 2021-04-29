@@ -53,7 +53,10 @@ find_package(catkin REQUIRED COMPONENTS
 #   Message2.msg
    rfid_data.msg
    encoder_data.msg
+<<<<<<< HEAD
    position.msg
+=======
+>>>>>>> 814fba57997c70dbff97d814a7415c7b7aadfc35
  )
 
 ## Generate services in the 'srv' folder
