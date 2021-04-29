@@ -28,10 +28,7 @@ from pipeless_plant_master.msg import position
 ##
 #
 def dist_ptp(p1,p2):
-    try:
-        dist = math.sqrt((p2[1]-p1[1])**2+(p2[0]-p1[0])**2)
-    except:
-        print "p1:{},p2:{}".format(p1,p2)
+    dist = math.sqrt((p2[1]-p1[1])**2+(p2[0]-p1[0])**2)
     return dist    
 #
 ## function: find_array
@@ -157,13 +154,10 @@ def pre_fil_three(dist_be_tags,rssi,RSSIDIS,tag_all_ex):
     dist_all = [dist1, dist2, dist3]
     for m in range(0,3):
         for n in range(1,3):
-            try:
-                if tag_all_ex[m][0] == tag_all_ex[m+n][0]:
-                    numNeig[m] = numNeig[m]+1
-                if tag_all_ex[m][1] == tag_all_ex[m+n][1]:
-                    numNeig[m] = numNeig[m]+1 
-            except:
-                print tag_all_ex  
+            if tag_all_ex[m][0] == tag_all_ex[m+n][0]:
+                numNeig[m] = numNeig[m]+1
+            if tag_all_ex[m][1] == tag_all_ex[m+n][1]:
+                numNeig[m] = numNeig[m]+1   
     #choose one of the distance out of all possible distances from respective RSSI value, table 4.2
     for k in range(0,len(combi)):
         if numNeig[k] <= 1:
@@ -206,7 +200,7 @@ def pre_fil_four(dist_be_tags,rssi,RSSIDIS,tag_all_ex):
     combi_temp = sorted(combi_temp, key=lambda x: x[0])
 
     for l in range(0,3):
-        print l
+        #print l
         combi[l] = combi_temp[l][0]
         tags_final.append([combi_temp[l][1],combi_temp[l][2]])
     return combi, tags_final
@@ -397,7 +391,7 @@ def esti_pos(data,position_old,dist_be_tags,delta):
         with open(abs_file_path2) as jason_file2:
             RSSIDIS = json.load(jason_file2)
     else:
-        print("No txt-file for RSSI to Distance")         
+        print("No txt-file for RSSI to Distance")        
     #-------------------------------------------------------------------------
     # Main computation
     if data.number == 1:
@@ -513,5 +507,5 @@ def esti_pos(data,position_old,dist_be_tags,delta):
         position_pub.x_pos = 0
         position_pub.y_pos = 0
     
-    
+    print(position_pub.x_pos, position_pub.y_pos)
     return position_pub

@@ -1,0 +1,4 @@
+<launch>
+	<node pkg="pipeless_plant_master" type="test.py" name="observer_node" />
+	<!-- node pkg="pipeless_plant_master" type="plotter.py" name="plotter_node" / -->
+</launch>

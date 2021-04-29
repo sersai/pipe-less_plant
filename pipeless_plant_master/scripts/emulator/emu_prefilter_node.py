@@ -18,7 +18,7 @@ def main():
     
     # Writing text is not good 'bla.txt'
     script_dir = os.path.dirname(__file__)
-    rel_path = "Meas_desktop11.txt"
+    rel_path = "Meas_desktop12.txt"
     rel_path2 = "Encoder.txt"
     abs_file_path = os.path.join(script_dir, rel_path)
     abs_file_path2 = os.path.join(script_dir, rel_path2)
