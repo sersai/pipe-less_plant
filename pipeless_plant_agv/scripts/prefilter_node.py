@@ -125,7 +125,7 @@ def main():
 			rfid_str.rssi5 = 0
 		gl_count = 0
 		# Publishing
-		print rfid_str
+#		print rfid_str
 		rfid_str.header.stamp = rospy.Time.now()
 		pub.publish(rfid_str)
 		rate.sleep()
