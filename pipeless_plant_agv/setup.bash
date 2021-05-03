@@ -16,5 +16,5 @@ agv_ip='192.168.0.134'
 export ROS_MASTER_URI=http://$master_ip:11311
 export ROS_HOSTNAME=$agv_ip
 
-roslaunch pipeless_plant_agv AGV.launch
-#rosrun pipeless_plant_agv prefilter_node.py
+#roslaunch pipeless_plant_agv AGV.launch
+rosrun pipeless_plant_agv prefilter_node.py

@@ -32,7 +32,6 @@ def main():
 	num_ts4 = 2		#number of bytes which contain trash of  X/
 	# Create instances of rfid_data
 	rfid_str = rfid_data()
-
 	while not rospy.is_shutdown():
 		# RFID init
 		rfid_str.number = 0
@@ -125,7 +124,7 @@ def main():
 			rfid_str.rssi5 = 0
 		gl_count = 0
 		# Publishing
-#		print rfid_str
+		print rfid_str
 		rfid_str.header.stamp = rospy.Time.now()
 		pub.publish(rfid_str)
 		rate.sleep()
