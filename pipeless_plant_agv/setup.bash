@@ -1,8 +1,10 @@
 #
 #Variables
 #
-master_ip='192.168.0.86'
-agv_ip='192.168.0.134'
+#master_ip='192.168.0.86' #at home
+#agv_ip='192.168.0.134' #at home
+master_ip='192.168.0.107' #at lab
+agv_ip='192.168.0.100' #at lab
 
 #master_ip='192.168.0.106'
 #agv_ip='192.168.0.100'
@@ -16,5 +18,6 @@ agv_ip='192.168.0.134'
 export ROS_MASTER_URI=http://$master_ip:11311
 export ROS_HOSTNAME=$agv_ip
 
-#roslaunch pipeless_plant_agv AGV.launch
-rosrun pipeless_plant_agv prefilter_node.py
+roslaunch pipeless_plant_agv AGV.launch
+#rosrun pipeless_plant_agv prefilter_node.py
+#rosrun pipeless_plant_agv rfid.py

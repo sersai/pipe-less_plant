@@ -27,19 +27,18 @@ def main():
 		if ser.inWaiting() > 0:
 			collect = empty_list[:]
 			while ser.inWaiting() > 0:
-				response = ser.read()
-				if (response != '\r') and (response != '\n') and (response != '\x00'):
-					try:
-						collect[count] = response
-					except:
-						print"count:{}".format(count)
-				count += 1
-#			count = 0
-			collect[:] = [x for x in collect if x]
-			for i in collect:
-				testStr +=i
-			print testStr
-			print '####'
+				test = ser.read_until('$')
+				print test
+#				response = ser.read()
+#				if(response is '#'):
+#					response = ser.read()
+#					for i in range(1,int(response)+1):
+#						test = ser.read_until(';')
+#						print test
+#					print("total number of tags: {}".format(int(response)+30))
+#				testStr += response
+#			print testStr
+#			print '####'
 		count = 0
 		rate.sleep()
 if __name__ == '__main__':

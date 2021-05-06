@@ -405,7 +405,7 @@ def esti_pos(data,position_old,dist_be_tags,delta):
         position_pub = position()
 
         script_dir = os.path.dirname(__file__)
-        rel_path1 = "IDPOS_small.txt"
+        rel_path1 = "IDPOS_large.txt"
         rel_path2 = "RSSIDISTANCE.txt"
         abs_file_path1 = os.path.join(script_dir, rel_path1)
         abs_file_path2 = os.path.join(script_dir, rel_path2)

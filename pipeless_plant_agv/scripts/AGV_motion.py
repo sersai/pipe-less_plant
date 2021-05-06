@@ -61,18 +61,32 @@ def main():
 				#v1 = response.decode('utf-8')
 				enc_str.alpha = response
 		time.sleep(0.15)
-		turning_speed = 54
-		forward_speed = 100
 		# Coordinate the motion
 		#current motion: [0-30) forward,[30-60) rotate, [60,~) stop
-		range1 = 2
-		range2 = 4
-		if 0 <= time.time()-t < range1:
-			AGV_motors(0,100,128,0,1)
-		elif range1 <= time.time()-t < range2:
-			AGV_motors(255,255,255,255,2)
-		elif range2 <= time.time()-t:
-			AGV_motors(0,0,0,0,3)
+		range1 = 60
+		range2 = 0
+		range3 = 0
+		range4 = 0
+		# forward: 0 100 128 0 = 100
+		# turning: 0 54 0 0 = 54
+		# turning: 255 202 0 0= -54
+		#backward: 255 156 128 0 = -100
+		try:
+			if 0 <= time.time()-t < range1:
+				#AGV_motors(0,100,128,0,1)
+				AGV_motors(0,100,1,244,1)
+			elif range1 <= time.time()-t < range2:
+				AGV_motors(0,54,0,0,2)
+			elif range2 <= time.time()-t < range3:
+				AGV_motors(255,202,0,0,3)
+			elif range3 <= time.time()-t < range4:
+				AGV_motors(255,156,128,0,4)
+			else:
+				AGV_motors(0,0,0,0,5)
+		except Exception as e:
+			print "error on AGV_motors function"
+			print e
+			AGV_motors(0,0,0,0,99)
 		# Publishing
 		enc_str.header.stamp = rospy.Time.now()
 		pub.publish(enc_str)
@@ -98,4 +112,5 @@ if __name__ == '__main__':
 			main()
 	except KeyboardInterrupt:
 		print("Disconnected")
+		AGV_motors(0,0,0,0,99)
 		ser.close()
