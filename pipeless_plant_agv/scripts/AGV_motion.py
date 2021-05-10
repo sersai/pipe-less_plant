@@ -12,6 +12,7 @@ from std_msgs.msg import UInt8
 from pipeless_plant_agv.msg import encoder_data
 
 # Global variables
+# chr(): represents unicode code point of the character
 motion_type = 0
 def AGV_motors(value1, value2, value3, value4, type):
 	global motion_type
