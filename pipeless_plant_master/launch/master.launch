@@ -1,6 +1,0 @@
-<launch>
-	<!-- node pkg="pipeless_plant_master" type="emu_prefilter_node.py" name="emu_node" output="screen"/ -->
-	<!-- node pkg="pipeless_plant_master" type="test.py" name="observer_node" / -->
-	<node pkg="pipeless_plant_master" type="plotter.py" name="plotter_node" output="screen"/>
-	<!-- node pkg="pipeless_plant_master" type="trilateration_node.py" name="trilateration_node" output="screen"/ -->
-</launch>
