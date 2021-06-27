@@ -1,6 +1,0 @@
-<launch>
-	<!-- node pkg="pipeless_plant_agv" type="prefilter_node.py" name="prefilter_node" output="screen"/ -->
-	<!--node pkg="pipeless_plant_agv" type="rfid.py" name="prefilter_node" output="screen" /-->
-	<node pkg="pipeless_plant_agv" type="cmdAGV.py" name="AGVmotion_node" output="screen" />
-	<!--node pkg="pipeless_plant_agv" type="trilateration_node.py" name="trilateration_node" output="screen"/-->
-</launch>
